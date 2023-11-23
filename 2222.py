@@ -1,6 +1,12 @@
 import subprocess
 import sys
 
+
+
+def upgrade_python():
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "python"])
+upgrade_python()
+
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('metaflow')
@@ -12,6 +18,7 @@ install('tensorflow')
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('tensorflow_decision_forests')
+
 
 
 def install(package):
