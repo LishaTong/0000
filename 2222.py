@@ -22,9 +22,6 @@ def install(package):
 install('scikit-learn')
 
 
-def upgrade_python():
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "python"])
-upgrade_python()
 
 from metaflow import FlowSpec, step, IncludeFile, Parameter
 import pandas as pd
