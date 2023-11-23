@@ -7,6 +7,11 @@ def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('metaflow')
 
+def upgrade_pip():
+    subprocess.check_call(["/home/appuser/venv/bin/python", "-m", "pip", "install", "--upgrade", "pip"])
+
+upgrade_pip()
+
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('tensorflow')
