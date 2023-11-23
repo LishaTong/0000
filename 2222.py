@@ -9,6 +9,14 @@ def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('tensorflow')
 
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install('tensorflow_decision_forests')
+
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install('scikit-learn')
 
 
 
