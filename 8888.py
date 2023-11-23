@@ -4,23 +4,21 @@ import sys
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
 install('metaflow')
-import subprocess
-import sys
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
 install('tensorflow')
 
-import subprocess
-import sys
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install('tensorflow_decision_forests')
+
+
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-install('tensorflow_decision_forests')
+install('scikit-learn')
 
 from metaflow import FlowSpec, step, IncludeFile, Parameter
 import pandas as pd
