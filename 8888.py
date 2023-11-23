@@ -1,3 +1,12 @@
+
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install('metaflow')
+
 from metaflow import FlowSpec, step, IncludeFile, Parameter
 import pandas as pd
 import tensorflow as tf
