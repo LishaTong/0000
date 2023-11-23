@@ -20,6 +20,11 @@ def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('scikit-learn')
 
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install('pylint')
+
 from metaflow import FlowSpec, step, IncludeFile, Parameter
 import pandas as pd
 import tensorflow as tf
