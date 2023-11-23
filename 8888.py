@@ -14,6 +14,14 @@ def install(package):
 
 install('tensorflow')
 
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install('tensorflow_decision_forests')
+
 from metaflow import FlowSpec, step, IncludeFile, Parameter
 import pandas as pd
 import tensorflow as tf
