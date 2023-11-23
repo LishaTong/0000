@@ -5,6 +5,10 @@ def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('metaflow')
 
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install('tensorflow')
+
 
 
 
