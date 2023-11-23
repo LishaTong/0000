@@ -12,6 +12,15 @@ def upgrade_pip():
 
 upgrade_pip()
 
+
+# Check the versions of the conflicting packages
+subprocess.call(["pip", "show", "package1"])
+subprocess.call(["pip", "show", "package2"])
+
+# Adjust the versions of the conflicting packages
+subprocess.call(["pip", "install", "package1==1.0.0"])
+subprocess.call(["pip", "install", "package2==2.0.0"])
+
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('tensorflow')
@@ -19,6 +28,7 @@ install('tensorflow')
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('tensorflow_decision_forests')
+
 
 
 
