@@ -155,36 +155,30 @@ if __name__ == '__main__':
 
 import streamlit as st
 import pandas as pd
-import numpy as np
-import tensorflow as tf
+from sklearn.metrics import accuracy_score
+
+# Load the predictions
+predictions = pd.read_csv('predictions.csv')
 
 # Load the model
 model = tf.keras.models.load_model('model_1000')
 
-# Load the pre-made predictions
-predictions = pd.read_csv('predictions.csv')
-
-# Create a function to calculate accuracy
-def calculate_accuracy(df, column, model):
-    accuracies = []
-    for value in df[column].unique():
-        subset = df[df[column] == value]
-        labels = subset["Survived"].values
-        predictions = model.predict(subset.drop("Survived", axis=1))
-        predictions = (predictions >= 0.5).astype(int)
-        accuracy = (predictions == labels).mean()
-        accuracies.append((value, accuracy))
-    return pd.DataFrame(accuracies, columns=[column, 'Accuracy'])
-
-# Streamlit app
-st.title('Model Accuracy Analysis')
-
+# Create a dropdown menu
 option = st.selectbox(
-    'Which category do you want to analyze?',
+    'Which group analysis would you like to see?',
     ('Sex', 'Pclass'))
 
-st.write('You selected:', option)
+# Calculate and display the accuracy based on the selected option
+if option == 'Sex':
+    groups = ['male', 'female']
+elif option == 'Pclass':
+    groups = predictions['Pclass'].unique()
 
-accuracy_df = calculate_accuracy(predictions, option, model)
+accuracy_table = []
+for group in groups:
+    group_preds = predictions[predictions[option] == group]
+    accuracy = accuracy_score(group_preds['true_values'], group_preds['predictions'])
+    accuracy_table.append([group, accuracy])
 
-st.table(accuracy_df)
+accuracy_table = pd.DataFrame(accuracy_table, columns=[option, 'accuracy'])
+st.write(accuracy_table)
