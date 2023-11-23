@@ -6,7 +6,7 @@ try:
     import metaflow
 except ModuleNotFoundError:
     os.system('pip install metaflow')
-    import metaflow
+
 
 
 from metaflow import FlowSpec, step, IncludeFile, Parameter
