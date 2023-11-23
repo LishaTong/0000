@@ -7,19 +7,13 @@ def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 install('metaflow')
 
-def upgrade_pip():
-    subprocess.check_call(["/home/appuser/venv/bin/python", "-m", "pip", "install", "--upgrade", "pip"])
+import pkg_resources
+from subprocess import call
 
-upgrade_pip()
+packages = [dist.project_name for dist in pkg_resources.working_set]
+call("pip install --upgrade " + ' '.join(packages), shell=True)
 
 
-# Check the versions of the conflicting packages
-subprocess.call(["pip", "show", "package1"])
-subprocess.call(["pip", "show", "package2"])
-
-# Adjust the versions of the conflicting packages
-subprocess.call(["pip", "install", "package1==1.0.0"])
-subprocess.call(["pip", "install", "package2==2.0.0"])
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
